@@ -1,21 +1,21 @@
 {
-  "name": "domlistener.js",
-  "version": "0.0.3",
-  "description": "Listen and react to all changes on the DOM for a given selector",
+  "name": "dom-tools.js",
+  "version": "0.0.4",
+  "description": "Listen and react to all changes and events on the DOM",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/torpedro/domlistener.js.git"
+    "url": "git+https://github.com/torpedro/dom-tools.js.git"
   },
   "author": "Pedro Flemming",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/torpedro/domlisteners.js/issues"
+    "url": "https://github.com/torpedro/dom-tools.js/issues"
   },
-  "homepage": "https://github.com/torpedro/domlisteners.js#readme",
+  "homepage": "https://github.com/torpedro/dom-tools.js#readme",
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.7.0",
