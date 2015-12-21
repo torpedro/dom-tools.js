@@ -4,62 +4,62 @@
 type DomCallback = ((node: Element) => void);
 
 class DomListener {
-	private observer: MutationObserver;
-	private selector: string;
-	private callback: DomCallback;
+    private observer: MutationObserver;
+    private selector: string;
+    private callback: DomCallback;
 
-	public constructor(selector: string, callback: DomCallback) {
-		this.selector = selector;
-		this.callback = callback;
+    public constructor(selector: string, callback: DomCallback) {
+        this.selector = selector;
+        this.callback = callback;
 
-		// first: trigger the callback for all existing elements
-		var elements: NodeListOf<Element> = document.querySelectorAll(selector)
-		for (var i: number = 0; i < elements.length; ++i) {
-			callback(elements[i]);
-		}
+        // first: trigger the callback for all existing elements
+        var elements: NodeListOf<Element> = document.querySelectorAll(selector)
+        for (var i: number = 0; i < elements.length; ++i) {
+            callback(elements[i]);
+        }
 
-		// register a mutation observer for all DOM changes
-		this.observer = new MutationObserver((mutations: MutationRecord[], observer: MutationObserver) => {
-			this.onDomMutations(mutations);
-		});
-		this.observer.observe(document, {
-			childList: true,
-			subtree: true
-		});
-	}
+        // register a mutation observer for all DOM changes
+        this.observer = new MutationObserver((mutations: MutationRecord[], observer: MutationObserver) => {
+            this.onDomMutations(mutations);
+        });
+        this.observer.observe(document, {
+            childList: true,
+            subtree: true
+        });
+    }
 
-	public destroy() {
-		this.observer.disconnect();
-	}
+    public destroy() {
+        this.observer.disconnect();
+    }
 
-	private onDomMutations(mutations: MutationRecord[]) {
-		for (var mutation of mutations) {
-			for (var i: number = 0; i < mutation.addedNodes.length; ++i) {
-				var node: Node = mutation.addedNodes[i];
-				this.onNodeAdded(node);
-			}
-			// TODO: handle removed nodes
-		}
-	}
+    private onDomMutations(mutations: MutationRecord[]) {
+        for (var mutation of mutations) {
+            for (var i: number = 0; i < mutation.addedNodes.length; ++i) {
+                var node: Node = mutation.addedNodes[i];
+                this.onNodeAdded(node);
+            }
+            // TODO: handle removed nodes
+        }
+    }
 
-	private onNodeAdded(node: Node) {
-		if (node.nodeType === Node.ELEMENT_NODE) {
-			var element: Element = <Element>node;
-			if ((<any>element).matches) {
-				// Element.matches is experimental
-				// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-				if ((<any>element).matches(this.selector)) {
-					this.callback(element);
-				}
-			} else {
-				var candidates: NodeListOf<Element> = element.parentElement.querySelectorAll(this.selector);
-				for (var j: number = 0; j < candidates.length; ++j) {
-					if (candidates[j] === element) {
-						this.callback(element);
-						break;
-					}
-				}
-			}
-		}
-	}
+    private onNodeAdded(node: Node) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            var element: Element = <Element>node;
+            if ((<any>element).matches) {
+                // Element.matches is experimental
+                // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+                if ((<any>element).matches(this.selector)) {
+                    this.callback(element);
+                }
+            } else {
+                var candidates: NodeListOf<Element> = element.parentElement.querySelectorAll(this.selector);
+                for (var j: number = 0; j < candidates.length; ++j) {
+                    if (candidates[j] === element) {
+                        this.callback(element);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
