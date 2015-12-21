@@ -3,6 +3,16 @@
 With this small tool you can keep track of all changes that are happening on your DOM. Also filtered by whatever DOM-selector you specify.
 The original use case was to automatically apply certain changes on every DOM element of a certain type.
 
+### How to Use
+
+Include the library in you web page by downloading domlistener.min.js from [here](https://github.com/torpedro/domlistener.js/tree/master/release) and including this in your website:
+
+```
+<script type="text/javascript" src="domlistener.min.js"></script>
+```
+
+See the following examples to get a feeeling on how to use this tool.
+
 ### Examples
 
 #### Auto-apply `target="_blank"` to links that point away from the current domain
