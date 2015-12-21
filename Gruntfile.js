@@ -20,7 +20,7 @@ function registerTasks(grunt) {
         'uglify:release'
     ]);
     
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['release']);
 }
 
 function configureGrunt(grunt) {
@@ -40,7 +40,7 @@ function configureGrunt(grunt) {
                     '<%= cfg.src %>/**/*.ts',
                     '<%= cfg.src %>/**/*.js'
                 ],
-                tasks: ['build']
+                tasks: ['release']
             }
         },
         
