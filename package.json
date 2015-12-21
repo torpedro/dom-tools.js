@@ -1,6 +1,6 @@
 {
   "name": "dom-tools.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Listen and react to all changes and events on the DOM",
   "main": "Gruntfile.js",
   "scripts": {

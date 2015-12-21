@@ -1,11 +1,11 @@
-[![npm version](https://badge.fury.io/js/domlistener.js.svg)](https://badge.fury.io/js/domlistener.js)
+[![npm version](https://badge.fury.io/js/dom-tools.js.svg)](https://badge.fury.io/js/dom-tools.js)
 
-# domlistener.js
+# dom-tools.js
 
 With this small tool you can keep track of all changes that are happening on your DOM. Also filtered by whatever DOM-selector you specify.
 The original use case was to automatically apply certain changes on every DOM element of a certain type.
 
-### How to Use
+### DomListener (how to use)
 
 Include the library in you web page by downloading domlistener.min.js from [here](https://github.com/torpedro/domlistener.js/tree/master/release) and including this in your website:
 
