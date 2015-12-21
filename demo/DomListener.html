@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DomListener demo - dom-tools.js</title>
+    <!-- jQuery 2 CDN -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- MDL CDN -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue_grey-blue.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- our tools -->
+    <script type="text/javascript" src="../build/src/DomListener.js"></script>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+
+  </head>
+  <body>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">DomListener demo - dom-tools.js</span>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Demos</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="DomListener.html">DomListener demo</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <!-- DomListener demo -->
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <h1>Controls</h1>
+              <p>
+              We have attached 3 listeners to the DOM for the following selectors:
+                <ul>
+                  <li>a</li>
+                  <li>a.name</li>
+                  <li>span.demo</li>
+                </ul>
+              </p>
+
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-a-btn">Add "a"-tag</button></div>
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-a-name-btn">Add "a"-tag with class "name"</button></div>
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-span-btn">Add "span"</button></div>
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-span-demo-btn">Add "span" with class "demo"</button></div>
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="clear-console-btn">Clear Console</button></div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <h1>DOM</h1>
+              <div id="test-dom"></div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <h1>Console</h1>
+              <pre id="domlistener-console"></pre>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">dom-tools.js demo</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="https://github.com/torpedro/dom-tools.js" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+    
+
+
+    <script type="text/javascript">
+    var aListener = new DomListener("a", function(element) {
+      $("#domlistener-console").append("a-tag was added to the DOM\n");
+    }, document.querySelector("#test-dom"));
+    
+    var aNameListener = new DomListener("a.name", function(element) {
+      $("#domlistener-console").append("a-tag with class name was added to the DOM\n");
+    }, document.querySelector("#test-dom"));
+    
+    var spanDemoListener = new DomListener("span.demo", function(element) {
+      $("#domlistener-console").append("span-tag with class demo was added to the DOM\n");
+    }, document.querySelector("#test-dom"));
+
+
+
+    $("#clear-console-btn").click(function() {
+      $("#domlistener-console").html("");
+    })
+
+    $("#add-a-btn").click(function() {
+      var a = $("<div><a>Test Link</a></div>");
+      $("#test-dom").append(a);
+    });
+
+
+    $("#add-a-name-btn").click(function() {
+      var a = $("<div><a class=\"name\">Test Link with class name</a></div>");
+      $("#test-dom").append(a);
+    });
+
+
+    $("#add-span-btn").click(function() {
+      var span = $("<div><span>Test Span</span></div>");
+      $("#test-dom").append(span);
+    });
+
+
+    $("#add-span-demo-btn").click(function() {
+      var span = $("<div><span class=\"demo\">Test Span with class demo</span></div>");
+      $("#test-dom").append(span);
+    });
+    </script>
+
+  </body>
+</html>
