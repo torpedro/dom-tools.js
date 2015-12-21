@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/domlistener.js.svg)](https://badge.fury.io/js/domlistener.js)
+
 # domlistener.js
 
 With this small tool you can keep track of all changes that are happening on your DOM. Also filtered by whatever DOM-selector you specify.
@@ -23,11 +25,11 @@ In a usual setup you would have to manually add that to every `a` element that e
 // Attach listener that gets called for all 'a' elements that exist
 // and also each time a element gets created
 var listener = new DomListener("a", function(element) {
-	var href = element.getAttribute("href");
+    var href = element.getAttribute("href");
 	
-	if (href && href.substring(0,4) === "http") {
-		element.setAttribute("target", "_blank");
-	}
+    if (href && href.substring(0,4) === "http") {
+        element.setAttribute("target", "_blank");
+    }
 });
 ```
 
