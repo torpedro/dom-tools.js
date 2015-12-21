@@ -7,13 +7,15 @@ class DomListener {
     private observer: MutationObserver;
     private selector: string;
     private callback: DomCallback;
+    private root: Node;
 
-    public constructor(selector: string, callback: DomCallback) {
+    public constructor(selector: string, callback: DomCallback, root?: Element) {
         this.selector = selector;
         this.callback = callback;
+        this.root = (typeof root === "undefined") ? document : root;
 
         // first: trigger the callback for all existing elements
-        var elements: NodeListOf<Element> = document.querySelectorAll(selector)
+        var elements: NodeListOf<Element> = root.querySelectorAll(selector)
         for (var i: number = 0; i < elements.length; ++i) {
             callback(elements[i]);
         }
@@ -22,7 +24,7 @@ class DomListener {
         this.observer = new MutationObserver((mutations: MutationRecord[], observer: MutationObserver) => {
             this.onDomMutations(mutations);
         });
-        this.observer.observe(document, {
+        this.observer.observe(root, {
             childList: true,
             subtree: true
         });
@@ -44,6 +46,8 @@ class DomListener {
 
     private onNodeAdded(node: Node) {
         if (node.nodeType === Node.ELEMENT_NODE) {
+
+            // check the currently added element
             var element: Element = <Element>node;
             if ((<any>element).matches) {
                 // Element.matches is experimental
@@ -59,6 +63,12 @@ class DomListener {
                         break;
                     }
                 }
+            }
+
+            // check all children of the added element
+            var children: NodeListOf<Element> = element.querySelectorAll(this.selector)
+            for (var i: number = 0; i < children.length; ++i) {
+                this.callback(children[i]);
             }
         }
     }
