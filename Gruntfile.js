@@ -1,5 +1,6 @@
 
 function loadPlugins(grunt) {
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -12,6 +13,12 @@ function registerTasks(grunt) {
         'copy:src',
         'ts:src'
     ]);
+
+    grunt.registerTask('release', [
+        'build',
+        'clean:release',
+        'uglify:release'
+    ]);
     
     grunt.registerTask('default', ['build']);
 }
@@ -20,7 +27,8 @@ function configureGrunt(grunt) {
     grunt.initConfig({
         cfg: {             
             'src': './src',
-            'build': './build'
+            'build': './build',
+            'release': './release'
         },
 
         watch: {
@@ -55,6 +63,11 @@ function configureGrunt(grunt) {
                     dot: true,
                     src: '<%= cfg.build %>/*'
                 }]
+            },
+            release: {
+                files: [{
+                    src: '<%= cfg.release %>/domlistener.js'
+                }]
             }
         },
         
@@ -72,7 +85,16 @@ function configureGrunt(grunt) {
                 },
                 src: ['<%= cfg.build %>/src/**/*\.ts']
             }
-        }
+        },
+
+        // Uglify for release
+        uglify: {
+            release: {
+                files: {
+                    '<%= cfg.release %>/domlistener.min.js': ['<%= cfg.build %>/src/DomListener.js']
+                }
+            }
+        },
     });
 }
 
