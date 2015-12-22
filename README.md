@@ -5,6 +5,10 @@
 With this small tool you can keep track of all changes that are happening on your DOM. Also filtered by whatever DOM-selector you specify.
 The original use case was to automatically apply certain changes on every DOM element of a certain type.
 
+### Demos
+
+ * [DomListener](http://torpedro.github.io/dom-tools.js/demo/DomListener.html)
+
 ### DomListener (how to use)
 
 Include the library in you web page by downloading domlistener.min.js from [here](https://github.com/torpedro/domlistener.js/tree/master/release) and including this in your website:
@@ -15,9 +19,7 @@ Include the library in you web page by downloading domlistener.min.js from [here
 
 See the following examples to get a feeeling on how to use this tool.
 
-### Examples
-
-#### Auto-apply `target="_blank"` to links that point away from the current domain
+#### Example: Auto-apply `target="_blank"` to links that point to another domain
 
 In a usual setup you would have to manually add that to every `a` element that exists in you webpage and also those that will be created dynamically by your application. Here you can do it with the following lines:
 
