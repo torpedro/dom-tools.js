@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- our tools -->
+    <!-- <script type="text/javascript" src="../build/src/DomListener.js"></script> -->
     <script type="text/javascript" src="../release/domlistener.min.js"></script>
     <link rel="stylesheet" type="text/css" href="demo.css">
   </head>
@@ -48,6 +49,7 @@
               <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-span-btn">Add "span"</button></div>
               <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="add-span-demo-btn">Add "span" with class "demo"</button></div>
               <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="clear-console-btn">Clear Console</button></div>
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="clear-dom-btn">Clear DOM</button></div>
             </div>
             <div class="mdl-cell mdl-cell--4-col">
               <h1>DOM</h1>
@@ -74,22 +76,48 @@
 
 
     <script type="text/javascript">
-    var aListener = new DomListener("a", function(element) {
-      $("#domlistener-console").append("a-tag was added to the DOM\n");
-    }, document.querySelector("#test-dom"));
+    function log(msg) {
+      $("#domlistener-console").append(msg +"\n");
+    }
+
+
+    var aListener = new DomListener("a", {
+      callback: function(element) {
+        log("a-tag was added to the DOM");
+      },
+      onRemove: function(element) {
+        log("a-tag was removed from the DOM");
+      },
+      root: document.querySelector("#test-dom")
+    });
     
-    var aNameListener = new DomListener("a.name", function(element) {
-      $("#domlistener-console").append("a-tag with class name was added to the DOM\n");
-    }, document.querySelector("#test-dom"));
+    var aNameListener = new DomListener("a.name", {
+      callback: function(element) {
+        log("a-tag with class name was added to the DOM");
+      },
+      onRemove: function(element) {
+        log("a-tag with class name was removed from the DOM");
+      },
+      root: document.querySelector("#test-dom")
+    });
     
-    var spanDemoListener = new DomListener("span.demo", function(element) {
-      $("#domlistener-console").append("span-tag with class demo was added to the DOM\n");
-    }, document.querySelector("#test-dom"));
+    var spanDemoListener = new DomListener("span.demo", {
+      callback: function(element) {
+        log("span-tag with class demo was added to the DOM");
+      },
+      onRemove: function(element) {
+        log("span-tag with class demo was removed from the DOM");
+      },
+      root: document.querySelector("#test-dom")
+    });
 
 
 
     $("#clear-console-btn").click(function() {
       $("#domlistener-console").html("");
+    })
+    $("#clear-dom-btn").click(function() {
+      $("#test-dom").html("");
     })
 
     $("#add-a-btn").click(function() {
