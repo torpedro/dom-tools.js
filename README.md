@@ -1,27 +1,22 @@
-[![npm version](https://badge.fury.io/js/dom-tools.js.svg)](https://badge.fury.io/js/dom-tools.js)
-
 # dom-tools.js
 
-With this small tool you can keep track of all changes that are happening on your DOM. Also filtered by whatever DOM-selector you specify.
-The original use case was to automatically apply certain changes on every DOM element of a certain type.
+This is a set of small tools to interact with the DOM in your website.
 
-### Demos
+### Overview
 
- * [DomListener](http://torpedro.github.io/dom-tools.js/demo/DomListener.html)
+**DomListener:** Get notified about creation and deletion of DOM element thats match a specific selector. ([demo][demo-listener], [blog post][blog-listener])
 
-### DomListener (how to use)
+### DomListener
 
-Include the library in you web page by downloading domlistener.min.js from [here](https://github.com/torpedro/domlistener.js/tree/master/release) and including this in your website:
+The DomListener is a small utility (~1.3 kB) to get notified about DOM events for all elements that match your selector. The basic idea is that you would want to do certain actions for each element.
 
-```
+To use it you simply have to include the library in you website by downloading `domlistener.min.js` from [here](https://github.com/torpedro/domlistener.js/tree/master/release) and including this in your website:
+
+```html
 <script type="text/javascript" src="domlistener.min.js"></script>
 ```
 
-See the following examples to get a feeeling on how to use this tool.
-
-#### Example: Auto-apply `target="_blank"` to links that point to another domain
-
-In a usual setup you would have to manually add that to every `a` element that exists in you webpage and also those that will be created dynamically by your application. Here you can do it with the following lines:
+Here is a simple example of how to use it. Imagine you want to make sure that every link that points to a different domain has the attribute `target="_blank"` set. In a usual setup you would have to manually add that to every `a` element that exists in you webpage and also those that will be created dynamically by your application. Here you can do it with the following lines:
 
 ```javascript
 // Attach listener that gets called for all 'a' elements that exist
@@ -34,6 +29,8 @@ var listener = new DomListener("a", function(element) {
     }
 });
 ```
+
+For a detailed overview over the **DomListener** utility take a look at [this blog post][blog-listener].
 
 
 ### Contributing
@@ -53,3 +50,7 @@ and to build the sources, you just need to do
 ```
 grunt build
 ```
+
+
+[blog-listener]: http://torpedro.github.io/javascript/html/2015/12/22/dom-tools-domlistener.html
+[demo-listener]: http://torpedro.github.io/dom-tools.js/demo/DomListener.html
