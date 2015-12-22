@@ -17,6 +17,7 @@ function registerTasks(grunt) {
     grunt.registerTask('release', [
         'build',
         'clean:release',
+        'copy:release',
         'uglify:release'
     ]);
     
@@ -54,6 +55,18 @@ function configureGrunt(grunt) {
                     src: ['**/*'],
                     dest: '<%= cfg.build %>/src/'
                 }]
+            },
+            release: {
+                files: [
+                    {
+                        src: '<%= cfg.build %>/src/DomListener.d.ts',
+                        dest: '<%= cfg.release %>/domlistener.d.ts'
+                    },
+                    {
+                        src: '<%= cfg.build %>/src/DomListener.js',
+                        dest: '<%= cfg.release %>/domlistener.js'
+                    }
+                ]
             }
         },
 
