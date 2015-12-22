@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventInspector demo - dom-tools.js</title>
+    <!-- jQuery 2 CDN -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- MDL CDN -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue_grey-blue.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- our tools -->
+    <script type="text/javascript" src="../build/src/EventInspector.js"></script>
+    <!-- // <script type="text/javascript" src="../release/EventInspector.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="demo.css">
+  </head>
+  <body>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">EventInspector demo - dom-tools.js</span>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Demos</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="DomListener.html">DomListener demo</a>
+          <a class="mdl-navigation__link" href="EventInspector.html">EventInspector demo</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <!-- Event Inspector Demo -->
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              Open the developer console to see details of the events.
+              <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="clear-console-btn">Clear Console</button></div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <h1>DOM</h1>
+              <div id="test-dom">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >Test</button>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <h1>Console</h1>
+              <pre id="console"></pre>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">dom-tools.js demo</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="https://github.com/torpedro/dom-tools.js" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+<script type="text/javascript">
+function log(msg) {
+  $("#console").append(msg +"\n");
+}
+
+var root = document.querySelector("#test-dom");
+
+var inspector = new EventInspector("button", function(element, eventType, evt) {
+  console.log(eventType +" on ", element)
+  log(eventType + " on " + element.tagName)
+}, root);
+
+$("#clear-console-btn").click(function() {
+  $("#console").html("");
+})
+</script>
+  </body>
+</html>

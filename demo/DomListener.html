@@ -27,6 +27,7 @@
         <span class="mdl-layout-title">Demos</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="DomListener.html">DomListener demo</a>
+          <a class="mdl-navigation__link" href="EventInspector.html">EventInspector demo</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
@@ -57,7 +58,7 @@
             </div>
             <div class="mdl-cell mdl-cell--4-col">
               <h1>Console</h1>
-              <pre id="domlistener-console"></pre>
+              <pre id="console"></pre>
             </div>
           </div>
         </div>
@@ -77,7 +78,7 @@
 
     <script type="text/javascript">
     function log(msg) {
-      $("#domlistener-console").append(msg +"\n");
+      $("#console").append(msg +"\n");
     }
 
 
@@ -114,7 +115,7 @@
 
 
     $("#clear-console-btn").click(function() {
-      $("#domlistener-console").html("");
+      $("#console").html("");
     })
     $("#clear-dom-btn").click(function() {
       $("#test-dom").html("");
