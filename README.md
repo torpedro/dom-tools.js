@@ -52,5 +52,5 @@ grunt build
 ```
 
 
-[blog-listener]: http://torpedro.github.io/javascript/html/2015/12/22/dom-tools-domlistener.html
+[blog-listener]: http://torpedro.github.io/tech/javascript/html/2015/12/22/dom-tools-domlistener.html
 [demo-listener]: http://torpedro.github.io/dom-tools.js/demo/DomListener.html
